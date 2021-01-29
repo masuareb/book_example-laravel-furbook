@@ -12,6 +12,10 @@
 */
 
 Route::get('/', function () {
+    return redirect('cats');
+});
+
+Route::get('cats', function() {
     return 'All cats';
 });
 
