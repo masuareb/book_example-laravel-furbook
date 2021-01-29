@@ -26,7 +26,7 @@ Route::get('cats/breeds/{name}', function($name) {
         ->first();
     return view('cats.index')
         ->with('breed', $breed)
-        ->with('cats', $breed->cats)
+        ->with('cats', $breed->cats);
 });
 
 Route::get('cats/{cat}', function(Furbook\Cat $cat) {
