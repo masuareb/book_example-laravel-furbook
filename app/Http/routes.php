@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'All cats';
+});
+
+Route::get('cats/{id}', function($id) {
+    return sprintf('Cat #%s', $id);
 });
