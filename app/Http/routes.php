@@ -22,6 +22,10 @@ Route::get('cats', function() {
     return view('cats.index')->with('cats', $cats);
 });
 
+Route::get('cats/create', function() {
+    return view('cats.create');
+});
+
 Route::get('cats/breeds/{name}', function($name) {
     $breed = Furbook\Breed::with('cats')
         ->whereName($name)
@@ -35,9 +39,6 @@ Route::get('cats/{cat}', function(Furbook\Cat $cat) {
     return view('cats.show')->with('cat', $cat);
 });
 
-Route::get('cats/create', function() {
-    return view('cats.create');
-});
 
 Route::post('cats', function() {
     $cat = Furbook\Cat::create(Input::all());
