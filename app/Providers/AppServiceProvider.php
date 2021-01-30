@@ -2,6 +2,7 @@
 
 namespace Furbook\Providers;
 
+use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -11,9 +12,10 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(ViewFactory $view)
     {
         //
+        $view->composer('partials.forms.cat', 'Furbook\Http\Views\Composers\CatFormComposer');
     }
 
     /**
