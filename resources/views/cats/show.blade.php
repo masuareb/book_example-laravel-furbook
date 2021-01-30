@@ -20,7 +20,7 @@
     <p>
         @if ($cat->breed)
             Breed:
-            {{ linkt_to('cats/breeds/'.$cat->breed->name, $cat->breed->name) }}
+            {{ link_to('cats/breeds/'.$cat->breed->name, $cat->breed->name) }}
         @endif
     </p>
 @stop
