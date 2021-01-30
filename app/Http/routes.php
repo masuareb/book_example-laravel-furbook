@@ -11,17 +11,18 @@
 |
 */
 
-use Illuminate\Support\Facades\Input;
-
 Route::get('/', function () {
     return redirect('cats');
 });
 
 Route::get('cats', ['uses' => 'CatController@index']);
+Route::get('cats/create', ['uses' => 'CatController@create']);
+Route::post('cats', ['uses' => 'CatController@store']);
+Route::get('cats/{cat}', ['uses' => 'CatController@show']);
+Route::get('cats/{cat}/edit', ['uses' => 'CatController@edit']);
+Route::put('cats/{cat}', ['uses' => 'CatController@update']);
+Route::delete('cats/{cat}', ['uses' => 'CatController@destroy']);
 
-Route::get('cats/create', function() {
-    return view('cats.create');
-});
 
 Route::get('cats/breeds/{name}', function($name) {
     $breed = Furbook\Breed::with('cats')
@@ -30,33 +31,6 @@ Route::get('cats/breeds/{name}', function($name) {
     return view('cats.index')
         ->with('breed', $breed)
         ->with('cats', $breed->cats);
-});
-
-Route::get('cats/{cat}', function(Furbook\Cat $cat) {
-    return view('cats.show')->with('cat', $cat);
-});
-
-
-Route::post('cats', function() {
-    $cat = Furbook\Cat::create(Input::all());
-    return redirect('cats/'.$cat->id)
-        ->withSuccess('Cat has been created.');
-});
-
-Route::get('cats/{cat}/edit', function(Furbook\Cat $cat) {
-    return view('cats.edit')->with('cat', $cat);
-});
-
-Route::put('cats/{cat}', function(Furbook\Cat $cat) {
-    $cat->update(Input::all());
-    return redirect('cats/'.$cat->id)
-        ->withSuccess('Cat has been updated.');
-});
-
-Route::delete('cats/{cat}', function(Furbook\Cat $cat) {
-    $cat->delete();
-    return redirect('cats')
-        ->withSuccess('Cat has been deleted.');
 });
 
 Route::get('about', function() {
