@@ -15,14 +15,14 @@ Route::get('/', function () {
     return redirect('cats');
 });
 
-Route::get('cats', ['uses' => 'CatController@index']);
+/*Route::get('cats', ['uses' => 'CatController@index']);
 Route::get('cats/create', ['uses' => 'CatController@create']);
 Route::post('cats', ['uses' => 'CatController@store']);
 Route::get('cats/{cat}', ['uses' => 'CatController@show']);
 Route::get('cats/{cat}/edit', ['uses' => 'CatController@edit']);
 Route::put('cats/{cat}', ['uses' => 'CatController@update']);
-Route::delete('cats/{cat}', ['uses' => 'CatController@destroy']);
-
+Route::delete('cats/{cat}', ['uses' => 'CatController@destroy']);*/
+Route::resource('cats', 'CatController');
 
 Route::get('cats/breeds/{name}', function($name) {
     $breed = Furbook\Breed::with('cats')
